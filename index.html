@@ -3,176 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Love Shayari</title>
+    <title>Website with Boxes</title>
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
     <style>
+        /* Basic reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
+        /* Set the PT Sans font */
         body {
             font-family: 'PT Sans', sans-serif;
-            background: linear-gradient(45deg, #2e3c72, #3b5998);
-            color: white;
-            height: 100vh;
+        }
+
+        /* Background animation with red, blue, pink, and yellow */
+        body, html {
+            height: 100%;
+            background: linear-gradient(45deg, #ff4d4d, #4d8fff, #ff79b0, #ffeb3b); /* Red, Blue, Pink, Yellow */
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
             display: flex;
             flex-direction: column;
+            justify-content: flex-start;
             align-items: center;
+            overflow: hidden;
         }
-        nav {
-            width: 100%;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
+
+        /* Gradient animation */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-        .nav-left {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        .nav-right {
-            display: flex;
-            gap: 15px;
-        }
-        .nav-right a {
-            text-decoration: none;
-            color: white;
-            font-size: 1.2rem;
-        }
-        .nav-right i {
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 10px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.3);
-        }
-        .nav-right i:hover {
-            background-color: rgba(255, 255, 255, 0.5);
-        }
-        .content {
-            margin-top: 80px;
-            width: 100%;
+
+        /* Vertical boxes with red shadow */
+        .box-container {
             display: flex;
             flex-direction: column;
-            align-items: center;
             gap: 20px;
+            margin-top: 20px; /* Top margin set to 20px */
             padding: 20px;
+            width: 100%;
+            max-width: 600px;
         }
+
         .box {
-            background-color: rgba(255, 255, 255, 0.2);
-            padding: 20px;
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.5);
             position: relative;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3); /* Red outer shadow */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            overflow: hidden;
         }
+
         .box p {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
+            font-size: 16px;
+            text-align: left;
+            margin-right: 30px; /* Make space for the copy icon */
         }
+
         .copy-icon {
-            font-size: 1.5rem;
             position: absolute;
             bottom: 10px;
             right: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 12px;
+            border-radius: 50%;
             cursor: pointer;
+            transition: all 0.3s ease-in-out; /* Add transition for hover effect */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Add shadow for more prominence */
+        }
+
+        .copy-icon img {
+            width: 25px;
+            height: 25px;
             color: white;
         }
+
         .copy-icon:hover {
-            color: red;
-        }
-        footer {
-            margin-top: auto;
-            padding: 10px;
-            text-align: center;
-            background-color: rgba(0, 0, 0, 0.5);
-            width: 100%;
-        }
-        footer p {
-            font-size: 1rem;
-        }
-        @media (max-width: 600px) {
-            .content {
-                gap: 10px;
-            }
-            .box {
-                width: 100%;
-                padding: 15px;
-            }
-            .nav-left {
-                font-size: 1.2rem;
-            }
-            .nav-right i {
-                font-size: 1.2rem;
-                padding: 8px;
-            }
+            transform: scale(1.2); /* Enlarges the icon on hover */
+            background-color: rgba(255, 0, 0, 0.5); /* Red background on hover */
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-left">Love Shayari</div>
-        <div class="nav-right">
-            <a href="https://play.google.com/store/apps/details?id=com.example.app" target="_blank">
-                <i class="fas fa-star" title="Rate"></i>
-            </a>
-            <a href="#" onclick="shareContent()">
-                <i class="fas fa-share" title="Share"></i>
-            </a>
-        </div>
-    </nav>
 
-    <div class="content">
+    <!-- Boxes Container -->
+    <div class="box-container">
         <div class="box">
-            <p>Box 1: Romantic text or quote goes here.</p>
-            <i class="fas fa-copy copy-icon" onclick="copyText('Box 1: Romantic text or quote goes here.')"></i>
+            <p>This is the first box with some text content.</p>
+            <div class="copy-icon" onclick="copyText('This is the first box with some text content.')">
+                <img src="https://img.icons8.com/ios/452/copy.png" alt="Copy"/>
+            </div>
         </div>
         <div class="box">
-            <p>Box 2: Another romantic text or quote here.</p>
-            <i class="fas fa-copy copy-icon" onclick="copyText('Box 2: Another romantic text or quote here.')"></i>
+            <p>This is the second box with some text content.</p>
+            <div class="copy-icon" onclick="copyText('This is the second box with some text content.')">
+                <img src="https://img.icons8.com/ios/452/copy.png" alt="Copy"/>
+            </div>
         </div>
         <div class="box">
-            <p>Box 3: Keep the love alive with sweet words.</p>
-            <i class="fas fa-copy copy-icon" onclick="copyText('Box 3: Keep the love alive with sweet words.')"></i>
+            <p>This is the third box with some text content.</p>
+            <div class="copy-icon" onclick="copyText('This is the third box with some text content.')">
+                <img src="https://img.icons8.com/ios/452/copy.png" alt="Copy"/>
+            </div>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; <span id="current-year"></span> Love Shayari</p>
-    </footer>
-
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script>
-        // Set the current year dynamically
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-
-        // Function for the share button
-        function shareContent() {
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Love Shayari',
-                    text: 'Check out this amazing Love Shayari!',
-                    url: 'https://www.example.com',
-                }).catch((error) => console.log('Error sharing:', error));
-            } else {
-                alert('Share feature is not supported on your device.');
-            }
-        }
-
-        // Function to copy text from the box
+        // Copy text function
         function copyText(text) {
-            navigator.clipboard.writeText(text).then(() => {
+            navigator.clipboard.writeText(text).then(function() {
                 alert('Text copied to clipboard!');
-            }).catch((err) => {
-                console.log('Error copying text:', err);
+            }).catch(function(err) {
+                alert('Error copying text: ' + err);
             });
         }
     </script>
