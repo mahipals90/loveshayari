@@ -58,13 +58,13 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            overflow: hidden;
         }
 
         .box p {
             font-size: 16px;
             text-align: left;
-            margin-right: 30px; /* Make space for the copy icon */
+            display: inline-block;
+            margin-right: 30px;
         }
 
         .copy-icon {
@@ -72,23 +72,17 @@
             bottom: 10px;
             right: 10px;
             background-color: rgba(0, 0, 0, 0.2);
-            padding: 12px;
+            padding: 8px;
             border-radius: 50%;
             cursor: pointer;
-            transition: all 0.3s ease-in-out; /* Add transition for hover effect */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Add shadow for more prominence */
         }
 
         .copy-icon img {
-            width: 25px;
-            height: 25px;
+            width: 20px;
+            height: 20px;
             color: white;
         }
 
-        .copy-icon:hover {
-            transform: scale(1.2); /* Enlarges the icon on hover */
-            background-color: rgba(255, 0, 0, 0.5); /* Red background on hover */
-        }
     </style>
 </head>
 <body>
@@ -98,19 +92,19 @@
         <div class="box">
             <p>This is the first box with some text content.</p>
             <div class="copy-icon" onclick="copyText('This is the first box with some text content.')">
-                <img src="https://img.icons8.com/ios/452/copy.png" alt="Copy"/>
+                <img src="https://raw.githubusercontent.com/mahipals90/uploads/refs/heads/main/copy.png" alt="Copy"/>
             </div>
         </div>
         <div class="box">
             <p>This is the second box with some text content.</p>
             <div class="copy-icon" onclick="copyText('This is the second box with some text content.')">
-                <img src="https://img.icons8.com/ios/452/copy.png" alt="Copy"/>
+                <img src="https://raw.githubusercontent.com/mahipals90/uploads/refs/heads/main/copy.png" alt="Copy"/>
             </div>
         </div>
         <div class="box">
             <p>This is the third box with some text content.</p>
             <div class="copy-icon" onclick="copyText('This is the third box with some text content.')">
-                <img src="https://img.icons8.com/ios/452/copy.png" alt="Copy"/>
+                <img src="https://raw.githubusercontent.com/mahipals90/uploads/refs/heads/main/copy.png" alt="Copy"/>
             </div>
         </div>
     </div>
