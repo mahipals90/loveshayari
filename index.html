@@ -79,9 +79,36 @@
             height: 20px;
         }
 
+        /* Text copied message */
+        .copied-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            display: none; /* Initially hidden */
+            z-index: 10;
+        }
+
+        .copied-message.show {
+            display: block;
+            animation: fadeOut 2s forwards;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
     </style>
 </head>
 <body>
+
+    <!-- Text Copied Message -->
+    <div class="copied-message" id="copiedMessage">Text Copied!</div>
 
     <!-- Boxes Container -->
     <div class="box-container">
@@ -109,7 +136,14 @@
         // Copy text function
         function copyText(text) {
             navigator.clipboard.writeText(text).then(function() {
-                alert('Text copied to clipboard!');
+                // Show the "Text Copied" message
+                const copiedMessage = document.getElementById('copiedMessage');
+                copiedMessage.classList.add('show');
+                
+                // Remove the message after the animation
+                setTimeout(() => {
+                    copiedMessage.classList.remove('show');
+                }, 2000);
             }).catch(function(err) {
                 alert('Error copying text: ' + err);
             });
