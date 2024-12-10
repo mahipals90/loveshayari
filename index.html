@@ -20,16 +20,16 @@
 
         /* Background animation with red, blue, pink, and yellow */
         body, html {
-            height: 100%;
-            background: linear-gradient(45deg, #ff4d4d, #4d8fff, #ff79b0, #ffeb3b); /* Red, Blue, Pink, Yellow */
-            background-size: 400% 400%;
-            animation: gradientAnimation 10s ease infinite;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            overflow: hidden;
-        }
+    height: 100%;
+    background: linear-gradient(45deg, #ff4d4d, #4d8fff, #ff79b0, #ffeb3b); /* Red, Blue, Pink, Yellow */
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: auto; /* Enable scrolling */
+}
 
         /* Gradient animation */
         @keyframes gradientAnimation {
