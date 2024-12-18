@@ -3,50 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scrollable Tabs Example</title>
+    <title>Dynamic Quotes Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            animation: backgroundAnimation 10s infinite;
+            background-size: 400% 400%;
+            color: white;
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background-color: orange; }
+            25% { background-color: pink; }
+            50% { background-color: yellow; }
+            75% { background-color: red; }
+            100% { background-color: orange; }
         }
 
         .tabs {
             display: flex;
-            overflow-x: auto; /* Enables horizontal scroll for the tabs */
-            background-color: #333;
+            overflow-x: auto;
+            white-space: nowrap;
+            background: rgba(255, 255, 255, 0.2);
             padding: 10px 0;
-            margin-bottom: 20px;
-            white-space: nowrap; /* Prevents tabs from wrapping to the next line */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .tab {
-            flex-shrink: 0;
-            padding: 12px 20px;
-            color: white;
-            background-color: #555;
-            border: 1px solid #444;
+            flex: 0 0 auto;
+            padding: 10px 20px;
             cursor: pointer;
-            transition: background-color 0.3s;
-            margin-right: 10px;
-        }
-
-        .tab:hover {
-            background-color: #777;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background 0.3s, color 0.3s;
         }
 
         .tab.active {
-            background-color: #28a745;
+            background: rgba(255, 255, 255, 0.5);
+            color: black;
+            border-radius: 5px;
+        }
+
+        .tab:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .tab-content {
             display: none;
             padding: 20px;
-            background-color: white;
-            border: 1px solid #ddd;
-            margin-top: 10px;
-            border-radius: 5px;
+            text-align: center;
         }
 
         .tab-content.active {
@@ -54,43 +64,28 @@
         }
 
         .box {
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 10px;
+            margin: 20px auto;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
         }
 
-        .copy-icon img {
-            width: 20px;
+        .copy-icon {
+            margin-top: 10px;
             cursor: pointer;
         }
 
-        @media screen and (max-width: 600px) {
-            .tabs {
-                padding: 8px 0;
-            }
-
-            .tab {
-                padding: 8px 16px;
-                font-size: 14px;
-            }
-
-            .box {
-                padding: 15px;
-            }
-        }
-
         #copiedMessage {
-            display: none;
             position: fixed;
             bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #28a745;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
             color: white;
-            padding: 10px 20px;
+            padding: 10px 15px;
             border-radius: 5px;
+            display: none;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
         }
 
         #copiedMessage.show {
@@ -99,24 +94,21 @@
     </style>
 </head>
 <body>
-
     <div class="tabs">
         <div class="tab active" onclick="showTab('love')">Love</div>
         <div class="tab" onclick="showTab('romance')">Romance</div>
         <div class="tab" onclick="showTab('rain')">Rain</div>
         <div class="tab" onclick="showTab('dil')">Dil</div>
-        <div class="tab" onclick="showTab('girlfriend')">GirlFriend</div>
-        <div class="tab" onclick="showTab('boyfriend')">BoyFriend</div>
+        <div class="tab" onclick="showTab('girlfriend')">Girlfriend</div>
+        <div class="tab" onclick="showTab('boyfriend')">Boyfriend</div>
         <div class="tab" onclick="showTab('sad')">Sad</div>
     </div>
 
-    <div class="tab-content" id="love">
+    <div class="tab-content active" id="love">
         <div class="box">
-            <p>तुझे देखकर जीते हैं हम, 🥰<br>
-            तेरे बिना हर खुशी अधूरी सी लगती है। 😔<br>
-            तेरे बिना ये दिल भी सूना है, 💔<br>
-            तेरी यादों से ही हर दिन रोशन हो। 🌟</p>
-            <div class="copy-icon" onclick="copyText('तुझे देखकर जीते हैं हम, 🥰 तेरे बिना हर खुशी अधूरी सी लगती है। 😔 तेरे बिना ये दिल भी सूना है, 💔 तेरी यादों से ही हर दिन रोशन हो। 🌟')">
+            <p>तू हो जब पास, 💞 दिल में जो खोया, मिल जाता है। 🥰<br>
+            तेरे बिना जीना, जैसे चाँद बिना रात हो। 🌙</p>
+            <div class="copy-icon" onclick="copyText('तू हो जब पास, 💞 दिल में जो खोया, मिल जाता है। 🥰 तेरे बिना जीना, जैसे चाँद बिना रात हो। 🌙')">
                 <img src="https://raw.githubusercontent.com/mahipals90/uploads/refs/heads/main/copy.png" alt="Copy"/>
             </div>
         </div>
@@ -124,10 +116,9 @@
 
     <div class="tab-content" id="romance">
         <div class="box">
-            <p>तेरी आँखों में बसी है एक दुनिया, 💖<br>
-            तेरे प्यार में है बस रंगों की माया। 🥰<br>
-            चलें साथ हम, हर जगह हो जाएगी रोशनी। ✨</p>
-            <div class="copy-icon" onclick="copyText('तेरी आँखों में बसी है एक दुनिया, 💖 तेरे प्यार में है बस रंगों की माया। 🥰 चलें साथ हम, हर जगह हो जाएगी रोशनी। ✨')">
+            <p>तुम्हारे साथ बिताए पल, 💕 जैसे मीठे सपने।<br>
+            प्यार का हर एहसास, दिल को खुशी दे। 🌸</p>
+            <div class="copy-icon" onclick="copyText('तुम्हारे साथ बिताए पल, 💕 जैसे मीठे सपने। प्यार का हर एहसास, दिल को खुशी दे। 🌸')">
                 <img src="https://raw.githubusercontent.com/mahipals90/uploads/refs/heads/main/copy.png" alt="Copy"/>
             </div>
         </div>
@@ -135,10 +126,9 @@
 
     <div class="tab-content" id="rain">
         <div class="box">
-            <p>बारिश में भीगते हैं हम, 🌧️<br>
-            तेरे साथ हो तो हर दर्द भूल जाते हैं। 💖<br>
-            बारिश की हर बूँद तुझसे मिलने का इशारा है। 😘</p>
-            <div class="copy-icon" onclick="copyText('बारिश में भीगते हैं हम, 🌧️ तेरे साथ हो तो हर दर्द भूल जाते हैं। 💖 बारिश की हर बूँद तुझसे मिलने का इशारा है। 😘')">
+            <p>बारिश की बूंदें, ❤️ दिल की बात कह जाती हैं।<br>
+            हर बूँद में, तुम्हारी यादें बस जाती हैं। 🌧️</p>
+            <div class="copy-icon" onclick="copyText('बारिश की बूंदें, ❤️ दिल की बात कह जाती हैं। हर बूँद में, तुम्हारी यादें बस जाती हैं। 🌧️')">
                 <img src="https://raw.githubusercontent.com/mahipals90/uploads/refs/heads/main/copy.png" alt="Copy"/>
             </div>
         </div>
@@ -146,10 +136,9 @@
 
     <div class="tab-content" id="dil">
         <div class="box">
-            <p>दिल की हर धड़कन तेरे नाम है, 💓<br>
-            तुझसे जुड़ी है मेरी जिंदगी का हर राज़। 🥺<br>
-            बस तू ही है जो दिल में समाया है। ❤️</p>
-            <div class="copy-icon" onclick="copyText('दिल की हर धड़कन तेरे नाम है, 💓 तुझसे जुड़ी है मेरी जिंदगी का हर राज़। 🥺 बस तू ही है जो दिल में समाया है। ❤️')">
+            <p>दिल की हर धड़कन में, 💓 तुम्हारा ही नाम है।<br>
+            तेरे बिना, जैसे यह दिल अधूरा है। 🥺</p>
+            <div class="copy-icon" onclick="copyText('दिल की हर धड़कन में, 💓 तुम्हारा ही नाम है। तेरे बिना, जैसे यह दिल अधूरा है। 🥺')">
                 <img src="https://raw.githubusercontent.com/mahipals90/uploads/refs/heads/main/copy.png" alt="Copy"/>
             </div>
         </div>
@@ -157,10 +146,9 @@
 
     <div class="tab-content" id="girlfriend">
         <div class="box">
-            <p>तेरी मुस्कान मेरी दुनिया है, 💕<br>
-            तू साथ हो तो हर पल खास हो जाता है। 🥰<br>
-            मेरी सबसे प्यारी हो तुम, दिल से। ❤️</p>
-            <div class="copy-icon" onclick="copyText('तेरी मुस्कान मेरी दुनिया है, 💕 तू साथ हो तो हर पल खास हो जाता है। 🥰 मेरी सबसे प्यारी हो तुम, दिल से। ❤️')">
+            <p>तुम्हारे बिना, यह जीवन अधूरा है। ❤️<br>
+            तुम मेरी मुस्कान का कारण हो। 🥰</p>
+            <div class="copy-icon" onclick="copyText('तुम्हारे बिना, यह जीवन अधूरा है। ❤️ तुम मेरी मुस्कान का कारण हो। 🥰')">
                 <img src="https://raw.githubusercontent.com/mahipals90/uploads/refs/heads/main/copy.png" alt="Copy"/>
             </div>
         </div>
@@ -168,9 +156,9 @@
 
     <div class="tab-content" id="boyfriend">
         <div class="box">
-            <p>तू हो जब पास, 💞 दिल में जो खोया, मिल जाता है। 🥰<br>
-            हर लम्हा तेरी यादों में खो जाता है। 💖</p>
-            <div class="copy-icon" onclick="copyText('तू हो जब पास, 💞 दिल में जो खोया, मिल जाता है। 🥰 हर लम्हा तेरी यादों में खो जाता है। 💖')">
+            <p>तुम मेरे दिल की धड़कन हो, 💕<br>
+            तुम्हारे साथ हर पल, अनमोल है। 🌟</p>
+            <div class="copy-icon" onclick="copyText('तुम मेरे दिल की धड़कन हो, 💕 तुम्हारे साथ हर पल, अनमोल है। 🌟')">
                 <img src="https://raw.githubusercontent.com/mahipals90/uploads/refs/heads/main/copy.png" alt="Copy"/>
             </div>
         </div>
@@ -178,28 +166,24 @@
 
     <div class="tab-content" id="sad">
         <div class="box">
-            <p>दिल के कोने में एक दर्द छुपा है, 💔<br>
-            तुझे खोकर अब कुछ भी अच्छा नहीं लगता। 😔<br>
-            तेरे बिना ये दुनिया वीरान सी लगती है। 🌑</p>
-            <div class="copy-icon" onclick="copyText('दिल के कोने में एक दर्द छुपा है, 💔 तुझे खोकर अब कुछ भी अच्छा नहीं लगता। 😔 तेरे बिना ये दुनिया वीरान सी लगती है। 🌑')">
+            <p>दर्द बहुत है, पर क्या करें, 🥺<br>
+            दिल का दर्द, अब मुस्कान बन गया है। 💔</p>
+            <div class="copy-icon" onclick="copyText('दर्द बहुत है, पर क्या करें, 🥺 दिल का दर्द, अब मुस्कान बन गया है। 💔')">
                 <img src="https://raw.githubusercontent.com/mahipals90/uploads/refs/heads/main/copy.png" alt="Copy"/>
             </div>
         </div>
     </div>
 
-    <div id="copiedMessage">Text Copied!</div>
+    <div id="copiedMessage">Text copied!</div>
 
     <script>
         function showTab(tabId) {
-            // Hide all tab contents
             const allTabs = document.querySelectorAll('.tab-content');
             allTabs.forEach(tab => tab.classList.remove('active'));
 
-            // Remove active class from all tabs
             const allTabLinks = document.querySelectorAll('.tab');
             allTabLinks.forEach(tab => tab.classList.remove('active'));
 
-            // Show the clicked tab and add active class to the clicked tab
             document.getElementById(tabId).classList.add('active');
             const activeTab = document.querySelector(`.tab[onclick="showTab('${tabId}')"]`);
             activeTab.classList.add('active');
@@ -220,9 +204,7 @@
             }, 2000);
         }
 
-        // Initialize with the first tab visible
         showTab('love');
     </script>
-
 </body>
 </html>
